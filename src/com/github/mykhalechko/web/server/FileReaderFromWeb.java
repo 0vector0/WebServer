@@ -2,12 +2,7 @@ package com.github.mykhalechko.web.server;
 
 import java.io.*;
 
-/**
- * Created by vector on 05.06.2016.
- */
 public class FileReaderFromWeb {
-
-
 
     public String readFile(String fileName) throws IOException {
         BufferedReader reader = null;
@@ -37,8 +32,5 @@ public class FileReaderFromWeb {
             return "index.html";
         }
         return fileName.substring(1);
-
     }
-
-
 }

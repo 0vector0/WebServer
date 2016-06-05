@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Created by vector on 04.06.2016.
- */
 public class ServerWeb {
 
     public static void main(String[] args) throws IOException {

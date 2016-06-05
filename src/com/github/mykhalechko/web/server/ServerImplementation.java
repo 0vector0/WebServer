@@ -6,13 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-/**
- * Created by vector on 05.06.2016.
- */
 public class ServerImplementation {
 
     Socket socket = null;
-
 
     public ServerImplementation(Socket socket) throws IOException {
         this.socket = socket;
@@ -35,7 +31,6 @@ public class ServerImplementation {
         }
         // /home.html
         return getArray[1];
-
     }
 
     public String prepareResponse(String request) throws IOException {
@@ -43,10 +38,7 @@ public class ServerImplementation {
         if (request.length() > 5 && request.substring(0, 5).equalsIgnoreCase("/calc")) {
             return new CalculatorWeb().calculation(request);
         }
-
-        FileReaderFromWeb fileReader = new FileReaderFromWeb();
-        String response = fileReader.readFile(request);
-        return response;
+        return  new FileReaderFromWeb().readFile(request);
     }
 
     public void serverAnswer(String response) throws IOException {
@@ -54,26 +46,12 @@ public class ServerImplementation {
             byte[] utf8 = response.getBytes("UTF-8");
             int byteCount = utf8.length;
             PrintWriter out = new PrintWriter(socket.getOutputStream());
-        if (response.equalsIgnoreCase("")) {
-            out.print("HTTP/1.1 404 Not Found\r\n");
-            out.print("Content-Length: " + 40 + "\r\n");
-            out.print("Content-Type: text/html\r\n");
-            out.print("\r\n");
-            out.print("HTTP/1.1 404 Not Found\r\n");
-            out.flush();
-        } else {
+
             out.print("HTTP/1.1 200 OK\r\n");
             out.print("Content-Length: " + byteCount + "\r\n");
             out.print("Content-Type: text/html\r\n");
             out.print("\r\n");
             out.print(response);
             out.flush();
-        }
     }
-
-
-
-
-
-
 }
