@@ -12,22 +12,12 @@ public class ServerWeb {
     public static void main(String[] args) throws IOException {
         Socket client = null;
         System.out.println("server start");
-
         ServerSocket serverSocket = new ServerSocket(48000);
-        int count = 0;
-
 
         while (true) {
             client = serverSocket.accept();
             ServerImplementation serverImplementation = new ServerImplementation(client);
-            serverImplementation.otvet();
-
-
-//             String message = in.readLine();
-//                        System.out.println("message:" + message);
-
+            serverImplementation.answer();
         }
     }
-
-
 }

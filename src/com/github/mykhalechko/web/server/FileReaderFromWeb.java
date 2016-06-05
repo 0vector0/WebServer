@@ -11,13 +11,18 @@ public class FileReaderFromWeb {
 
     public String readFile(String fileName) throws IOException {
         BufferedReader reader = null;
-        fileName = fileName.substring(1);
+
+        fileName = checkFileName(fileName);
+
         fileName = "web\\" + fileName;
+        FileInputStream file = null;
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
+            file = new FileInputStream(fileName);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+                file = new FileInputStream("web\\404.html");
         }
+
+        reader = new BufferedReader(new InputStreamReader(file));
 
         StringBuilder sb = new StringBuilder();
         String line;
@@ -26,5 +31,14 @@ public class FileReaderFromWeb {
         }
         return sb.toString();
     }
+
+    public String checkFileName(String fileName) {
+        if (fileName.equalsIgnoreCase("/")) {
+            return "index.html";
+        }
+        return fileName.substring(1);
+
+    }
+
 
 }

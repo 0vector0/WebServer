@@ -19,12 +19,35 @@ public class ServerImplementation {
         System.out.println("Connected");
     }
 
-    public void otvet() throws IOException {
+    public void answer() throws IOException {
         String request = parsingRequestMessage(socket);
         String response = prepareResponse(request);
         serverAnswer(response);
     }
 
+    public String parsingRequestMessage(Socket socket) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        // String get = "GET /home.html HTTP/1.1";
+        String requestMessage = in.readLine();
+        String[] getArray = {"GET", "/", "HTTP/1.1"};
+        if (requestMessage != null && requestMessage.contains(" ")) {
+            getArray = requestMessage.split(" ");
+        }
+        // /home.html
+        return getArray[1];
+
+    }
+
+    public String prepareResponse(String request) throws IOException {
+
+        if (request.length() > 5 && request.substring(0, 5).equalsIgnoreCase("/calc")) {
+            return new CalculatorWeb().calculation(request);
+        }
+
+        FileReaderFromWeb fileReader = new FileReaderFromWeb();
+        String response = fileReader.readFile(request);
+        return response;
+    }
 
     public void serverAnswer(String response) throws IOException {
 
@@ -46,49 +69,11 @@ public class ServerImplementation {
             out.print(response);
             out.flush();
         }
-
-
     }
 
-    public String parsingRequestMessage(Socket socket) throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        // String get = "GET /home.html HTTP/1.1";
-        String requestMessage = in.readLine();
-        String[] getArray = {"GET", "/", "HTTP/1.1"};
-        if (requestMessage != null && requestMessage.contains(" ")) {
-            getArray = requestMessage.split(" ");
-        }
-
-        // /home.html
-        return getArray[1];
-
-    }
-
-    public String prepareResponse(String request) throws IOException {
-        String response = "";
-        FileReaderFromWeb fileReader = new FileReaderFromWeb();
-        if (request.equalsIgnoreCase("/")) {
-            response = fileReader.readFile("/index.html");
-        }
-
-        if (request.equalsIgnoreCase("/index.html")) {
-            response = fileReader.readFile("/index.html");
-        }
-        if (request.equalsIgnoreCase("/home.html")) {
-            response = "<html>\n" +
-                    "<body>\n" +
-                    "<h1>home</h1>\n" +
-                    "</body>\n" +
-                    "</html>" + "\r\n";
-        }
-
-        if (request.length() > 5 && request.substring(0, 5).equalsIgnoreCase("/calc")) {
-            response = new CalculatorWeb().calculation(request);
-        }
 
 
-        return response;
-    }
+
 
 
 }
