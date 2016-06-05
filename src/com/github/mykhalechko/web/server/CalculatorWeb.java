@@ -3,7 +3,7 @@ package com.github.mykhalechko.web.server;
 public class CalculatorWeb {
 
     public String calculation(String request) {
-
+        System.out.println(request);
         String[] operationArray = request.substring(6,request.length()).split("&");
         String operation = operationArray[0].substring(10, operationArray[0].length());
         String first = operationArray[1].substring(6, operationArray[1].length());
