@@ -1,5 +1,6 @@
 *.class
-.out/
+.out/*
+out/
 
 # Eclipse
 .classpath

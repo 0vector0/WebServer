@@ -64,23 +64,15 @@ public class ServerImplementation {
 
     }
 
-    public String prepareResponse(String request) {
+    public String prepareResponse(String request) throws IOException {
         String response = "";
-
+        FileReaderFromWeb fileReader = new FileReaderFromWeb();
         if (request.equalsIgnoreCase("/")) {
-            response = "<html>\n" +
-                    "<body>\n" +
-                    "<h1>index</h1>\n" +
-                    "</body>\n" +
-                    "</html>" + "\r\n";
+            response = fileReader.readFile("/index.html");
         }
 
         if (request.equalsIgnoreCase("/index.html")) {
-            response = "<html>\n" +
-                    "<body>\n" +
-                    "<h1>index</h1>\n" +
-                    "</body>\n" +
-                    "</html>" + "\r\n";
+            response = fileReader.readFile("/index.html");
         }
         if (request.equalsIgnoreCase("/home.html")) {
             response = "<html>\n" +
