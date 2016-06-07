@@ -1,15 +1,22 @@
 body{
     font: 1em Arial;
-    margin: 0;
+    margin: 20px;
 }
 
 .container{
     background: #999;
-    display: inline-block;
-    width: 300px;
-    height: 100px;
-    margin: 50px 20px 50px 20px; <!-- Отступы сверху справа снизу слева -->
-   
+    display: block;
+    height: 200px;
+    margin: 80px;
+
+}
+
+.container-inner{
+    background: #ccc;
+    margin: 10px;
+    position: absolute;
+    bottom: 0 ;
+
 }
 
 a {
