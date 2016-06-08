@@ -7,36 +7,56 @@ body {
 }
 
 
+.menu-left {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+
+}
+
+nav {
+    display: block;
+    width: 60px;
+    
+}
+
+
 
 #header { /* Верхний блок */
     background: #0080c0; /* Цвет фона */
     height: 100px;
+
     padding: 5px; /* Поля вокруг текста */
 }
 
 .column-left {
     position: fixed; /* Фиксированное положение */
-    width: 15%;
-    min-width: 200px;
+    width: 150px;
+    height: 700px;
+    /*min-width: 100px;*/
     left: 5px; /* Расстояние от правого края окна браузера */
-    top: 5%; /* Расстояние сверху */
+    top: 10px; /* Расстояние сверху */
     padding: 5px; /* Поля вокруг текста */
     background: #ffe; /* Цвет фона */
-    border: 1px solid #333; /* Параметры рамки */
+   
 }
 .column-right {
     position: fixed; /* Фиксированное положение */
-    width: 15%;
-    min-width: 200px;
+    width: 150px;
+    height: 700px;
+    /*min-width: 100px;*/
     right: 5px; /* Расстояние от правого края окна браузера */
-    top: 20px; /* Расстояние сверху */
+    top: 10px; /* Расстояние сверху */
     padding: 5px; /* Поля вокруг текста */
     background: #ffe; /* Цвет фона */
-    border: 1px solid #333; /* Параметры рамки */
+    
 }
 .column-center {
-    width: 70%; /* Ширина элемента в пикселах */
+    position: absolute;
+    width: auto; /* Ширина элемента в пикселах */
+    left: 170px; /* Расстояние от правого края окна браузера */
+    right: 170px; /* Расстояние от правого края окна браузера */
+    top: 10px; /* Расстояние сверху */
     padding: 10px; /* Поля вокруг текста */
-    margin: auto; /* Выравниваем по центру */
     background: #fc0; /* Цвет фона */
 }
