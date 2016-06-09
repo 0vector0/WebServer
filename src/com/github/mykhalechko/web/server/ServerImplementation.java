@@ -21,9 +21,9 @@ public class ServerImplementation implements Runnable {
     public void run() {
         try {
             String request = parsingRequestMessage(socket);
-
-            String response = prepareResponse(request);
-            serverAnswer(response);
+            PrintWriter out = new PrintWriter(socket.getOutputStream());
+            out =   new FileReaderFromWeb().prepareResponse(request, out);
+            out.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,29 +44,16 @@ public class ServerImplementation implements Runnable {
         return "/";
     }
 
-    public String prepareResponse(String request) throws IOException {
+//    public PrintWriter prepareResponse(String request) throws IOException {
+//        PrintWriter out = new PrintWriter(socket.getOutputStream());
+//        if (request.length() > 5 && request.substring(0, 5).equalsIgnoreCase("/calc")) {
+//          //  return new CalculatorWeb().calculation(request, out);
+//        }
+//
+//        return  new FileReaderFromWeb().prepareResponse(request, out);
+//    }
 
-        if (request.length() > 5 && request.substring(0, 5).equalsIgnoreCase("/calc")) {
-            return new CalculatorWeb().calculation(request);
-        }
 
-        return  new FileReaderFromWeb().readFile(request);
-    }
-
-    public void serverAnswer(String response) throws IOException {
-
-            byte[] utf8 = response.getBytes("UTF-8");
-            int byteCount = utf8.length;
-
-            PrintWriter out = new PrintWriter(socket.getOutputStream());
-
-            out.print("HTTP/1.1 200 OK\r\n");
-            out.print("Content-Length: " + byteCount + "\r\n");
-            out.print("Content-Type: text/html\r\n");
-            out.print("\r\n");
-            out.print(response);
-            out.flush();
-    }
 
 
 }
