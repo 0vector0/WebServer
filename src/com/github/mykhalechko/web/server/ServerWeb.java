@@ -16,7 +16,9 @@ public class ServerWeb {
             client = serverSocket.accept();
 
             }
-            new ServerImplementation(client).run();
+            if (client !=null) {
+                new ServerImplementation(client).run();
+            }
         }
     }
 }
