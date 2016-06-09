@@ -9,12 +9,11 @@ public class FileReaderFromWeb {
 
         fileName = checkFileName(fileName);
 
-        fileName = "web\\" + fileName;
         FileInputStream file = null;
         try {
             file = new FileInputStream(fileName);
         } catch (FileNotFoundException e) {
-                file = new FileInputStream("web\\404.html");
+            file = new FileInputStream("web/404.html");
         }
 
         reader = new BufferedReader(new InputStreamReader(file));
@@ -29,7 +28,7 @@ public class FileReaderFromWeb {
 
     public String checkFileName(String fileName) {
         if (fileName.equalsIgnoreCase("/")) {
-            return "index.html";
+            return "web/index.html";
         }
         return fileName.substring(1);
     }

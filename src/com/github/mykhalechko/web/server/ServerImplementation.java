@@ -5,32 +5,46 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class ServerImplementation {
+public class ServerImplementation implements Runnable {
 
     Socket socket = null;
 
     public ServerImplementation(Socket socket) throws IOException {
+        if (this.socket == null) {
         this.socket = socket;
         System.out.println("Connected");
+        }
+
     }
 
-    public void answer() throws IOException {
-        String request = parsingRequestMessage(socket);
-        String response = prepareResponse(request);
-        serverAnswer(response);
+    @Override
+    public void run() {
+        try {
+            String request = parsingRequestMessage(socket);
+
+            String response = prepareResponse(request);
+            serverAnswer(response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     public String parsingRequestMessage(Socket socket) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         // String get = "GET /home.html HTTP/1.1";
         String requestMessage = in.readLine();
-        String[] getArray = {"GET", "/", "HTTP/1.1"};
-        if (requestMessage != null && requestMessage.contains(" ")) {
-            getArray = requestMessage.split(" ");
+        Pattern p = Pattern.compile("GET\\s(.*?)\\sHTTP");
+        Matcher m = p.matcher(requestMessage);
+        if (m.find()) {
+            System.out.println(m.group(1));
+            return m.group(1);
         }
         // /home.html
-        return getArray[1];
+        return "/web/404.html";
     }
 
     public String prepareResponse(String request) throws IOException {
@@ -38,6 +52,7 @@ public class ServerImplementation {
         if (request.length() > 5 && request.substring(0, 5).equalsIgnoreCase("/calc")) {
             return new CalculatorWeb().calculation(request);
         }
+
         return  new FileReaderFromWeb().readFile(request);
     }
 
@@ -54,4 +69,6 @@ public class ServerImplementation {
             out.print(response);
             out.flush();
     }
+
+
 }
