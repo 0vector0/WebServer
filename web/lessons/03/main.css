@@ -1,0 +1,30 @@
+body {
+    font-family: Verdana;
+    font-size: 13px;
+    color: #333;
+    background: #f3f3f3;
+}
+
+a {
+    color: #cb2c2c;
+    text-decoration: none;
+}
+
+a[href$=".jpg"]::after {
+    content: ' (jpg)';
+    font-size: 10px;
+    color: #888;
+}
+
+a[href$=".png"]::after {
+    content: ' (png)';
+    font-size: 10px;
+    color: #888;
+}
+
+a[href$=".mp3"]::after {
+    content: ' (mp3)';
+    font-size: 10px;
+    color: #888;
+}
+

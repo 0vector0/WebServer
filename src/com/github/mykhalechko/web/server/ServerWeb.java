@@ -12,9 +12,11 @@ public class ServerWeb {
         ServerSocket serverSocket = new ServerSocket(48000);
 
         while (true) {
+            if (client == null) {
             client = serverSocket.accept();
-            ServerImplementation serverImplementation = new ServerImplementation(client);
-            serverImplementation.answer();
+
+            }
+            new ServerImplementation(client).run();
         }
     }
 }
