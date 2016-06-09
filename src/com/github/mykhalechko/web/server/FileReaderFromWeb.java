@@ -8,7 +8,7 @@ public class FileReaderFromWeb {
         BufferedReader reader = null;
 
         fileName = checkFileName(fileName);
-
+        fileName = "" + fileName;
         FileInputStream file = null;
         try {
             file = new FileInputStream(fileName);
@@ -17,7 +17,6 @@ public class FileReaderFromWeb {
         }
 
         reader = new BufferedReader(new InputStreamReader(file));
-
         StringBuilder sb = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {

@@ -1,9 +1,6 @@
 package com.github.mykhalechko.web.server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,7 +41,7 @@ public class ServerImplementation implements Runnable {
             return m.group(1);
         }
         // /home.html
-        return "/web/404.html";
+        return "/";
     }
 
     public String prepareResponse(String request) throws IOException {
@@ -60,6 +57,7 @@ public class ServerImplementation implements Runnable {
 
             byte[] utf8 = response.getBytes("UTF-8");
             int byteCount = utf8.length;
+
             PrintWriter out = new PrintWriter(socket.getOutputStream());
 
             out.print("HTTP/1.1 200 OK\r\n");
