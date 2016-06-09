@@ -9,7 +9,9 @@ public class FileReaderFromWeb {
 
 
     public PrintWriter prepareResponse(String fileName, PrintWriter out) throws IOException {
-        String response = readFile(fileName);
+
+
+        String response = readTextFile(fileName);
 
         byte[] utf8 = response.getBytes("UTF-8");
         int byteCount = utf8.length;
@@ -41,7 +43,7 @@ public class FileReaderFromWeb {
 
 
 
-    public String readFile(String fileName) throws IOException {
+    public String readTextFile(String fileName) throws IOException {
         BufferedReader reader = null;
 
         fileName = checkFileName(fileName);
