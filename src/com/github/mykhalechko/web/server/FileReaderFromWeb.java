@@ -23,7 +23,7 @@ public class FileReaderFromWeb {
 
         out.print("HTTP/1.1 200 OK\r\n");
         out.print("Content-Length: " + byteCount + "\r\n");
-        if (fileType.equalsIgnoreCase("css")) {
+        if (fileType!=null && fileType.equalsIgnoreCase("css")) {
             out.print("Content-Type: text/css\r\n");
         }
         out.print("Content-Type: text/html\r\n");
