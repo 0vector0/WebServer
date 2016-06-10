@@ -10,13 +10,10 @@ public class FileReaderFromWeb {
 
     public PrintWriter prepareResponse(String fileName, PrintWriter out) throws IOException {
 
-
         String response = readTextFile(fileName);
-
         byte[] utf8 = response.getBytes("UTF-8");
         int byteCount = utf8.length;
 
-        //PrintWriter out = new PrintWriter(socket.getOutputStream());
         String fileType = null;
         Pattern p = Pattern.compile("\\.(.+$)");
         Matcher m = p.matcher(fileName);
@@ -25,7 +22,6 @@ public class FileReaderFromWeb {
             fileType = (m.group(1));
 
         }
-
 
         System.out.println("fileType = " + fileType );
 
