@@ -1,5 +1,5 @@
 body {
-    font-family: Arial;
+    font-family: Tahoma;
     text-align: center;
     background: url("../img/background.jpg") repeat;
     color: #333;
@@ -16,7 +16,7 @@ a {
     width: 15%;
     min-width: 100px;
     padding: 5px;
-    background: #ffe;
+    background: white;
     border: 1px solid #333;
     text-align: right;
 }
@@ -28,31 +28,26 @@ a {
     width: 15%;
     min-width: 100px;
     padding: 5px;
-    background: #ffe;
+    background: white;
     border: 1px solid #333;
     text-align: left;
 }
 
 .content {
     position: inherit;
-    /*right: 26%;*/
-    /*left: 26%;*/
     margin: auto;
     width: 45%;
-    height: 1000px;
-    background: green;
+    background: white;
 }
 
 .content-text {
     padding: 10px 20px;
-    text-align: justify;
 }
 
 header {
     text-align: center;
     font-size: x-large;
-    background: #008BCE;
-
+    background: darkorange;
 }
 
 .calc {
@@ -60,4 +55,48 @@ header {
     text-align: center;
 }
 
+.menu-title {
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 60px;
+  letter-spacing: 2px;
+  color: black;
+  font-size: 20px;
+  padding-left: 15px;
+  border-right: 2px solid #b99d61;
+}
 
+.menu ul {
+    margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu li {
+    margin-bottom: 10px;
+  letter-spacing: 1px;
+  color: #444;
+  font-size: 20px;
+}
+
+
+.menu li: before {
+  content: '-';
+}
+.menu a {
+  text-decoration: none;
+  color: black;
+}
+.menu a:hover {
+  color: #b99d61;
+}
+
+.leftimg {
+    float:left; 
+    margin: 7px 7px 7px 0; 
+   }
+
+.rightimg  {
+    float: right; 
+    margin: 7px 0 7px 7px; 
+   }
