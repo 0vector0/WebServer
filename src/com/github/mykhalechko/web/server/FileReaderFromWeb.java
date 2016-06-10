@@ -6,28 +6,20 @@ import java.util.regex.Pattern;
 
 public class FileReaderFromWeb {
 
-
-
     public PrintWriter prepareResponse(String fileName, PrintWriter out) throws IOException {
 
-
         String response = readTextFile(fileName);
-
         byte[] utf8 = response.getBytes("UTF-8");
         int byteCount = utf8.length;
 
-        //PrintWriter out = new PrintWriter(socket.getOutputStream());
         String fileType = null;
         Pattern p = Pattern.compile("\\.(.+$)");
         Matcher m = p.matcher(fileName);
 
         if (m.find()) {
             fileType = (m.group(1));
-
         }
-
-
-        System.out.println("fileType = " + fileType );
+        System.out.println("fileType = " + fileType);
 
         out.print("HTTP/1.1 200 OK\r\n");
         out.print("Content-Length: " + byteCount + "\r\n");
@@ -39,9 +31,6 @@ public class FileReaderFromWeb {
         out.print(response);
         return out;
     }
-
-
-
 
     public String readTextFile(String fileName) throws IOException {
         BufferedReader reader = null;

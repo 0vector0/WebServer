@@ -13,10 +13,11 @@ public class ServerWeb {
 
         while (true) {
             if (client == null) {
-            client = serverSocket.accept();
-
+                client = serverSocket.accept();
             }
-            new ServerImplementation(client).run();
+            if (client != null) {
+                new ServerImplementation(client).run();
+            }
         }
     }
 }
